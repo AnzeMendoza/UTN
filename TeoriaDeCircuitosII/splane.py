@@ -148,9 +148,9 @@ def pzmap(myFilter):
     title('Poles and zeros')
     
     # Display zeros, poles and gain
-    print(str(len(z)) + " zeros: " + str(z))
-    print(str(len(p)) + " poles: " + str(p))
-    print("gain: " + str(k))
+#    print(str(len(z)) + " zeros: " + str(z))
+#    print(str(len(p)) + " poles: " + str(p))
+#    print("gain: " + str(k))
 ####################################################################################
 def grpDelay(myFilter):
 
@@ -202,3 +202,22 @@ def convert2SOS(myFilter):
         
     return SOSoutput
 ####################################################################################
+def pretty(trans_fuction):
+    
+    num = trans_fuction.num
+    den = trans_fuction.den
+    
+    num = ['{} s^{}'.format(num[i], len(num)-i-1) if num[i] else '' for i in range(len(num))]
+    num = ' + '.join(num)
+    den = ['{} s^{}'.format(den[i], len(den)-i-1) if num[i] else '' for i in range(len(den))]
+    den = ' + '.join(den)
+    max_len = max(len(num), len(den))
+    bar = '-' * max_len
+    print('       {}{}'.format(' ' * int(max_len/2-len(num)/2), num))
+    print('T(s) = {}'.format(bar))
+    print('       {}{}'.format(' ' * int(max_len/2-len(den)/2), den))
+####################################################################################
+def epsilonButter(alpha_max):
+        return (np.sqrt(10**(alpha_max*0.1) - 1))
+####################################################################################
+    
