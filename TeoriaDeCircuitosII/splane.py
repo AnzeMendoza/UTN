@@ -202,10 +202,10 @@ def convert2SOS(myFilter):
         
     return SOSoutput
 ####################################################################################
-def pretty(trans_fuction):
+def pretty(trans_fuction, dec = 3):
     
-    num = trans_fuction.num
-    den = trans_fuction.den
+    num = np.around(trans_fuction.num,dec)
+    den = np.around(trans_fuction.den,dec)
     
     num = ['{} s^{}'.format(num[i], len(num)-i-1) if num[i] else '' for i in range(len(num))]
     num = ' + '.join(num)
