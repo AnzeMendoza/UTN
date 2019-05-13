@@ -166,9 +166,13 @@ def grpDelay(myFilter):
     plt.ylabel('Group Delay [sec]')
     plt.title('Group delay')
 ####################################################################################
-def bodePlot(myFilter):
-    
-    w, mag, phase = myFilter.bode(n=200)
+def bodePlot(myFilter, w1 = None, w2 = None):
+    if (w1 == None):
+        w, mag, phase = myFilter.bode(n=200)
+    else:
+        w, mag, phase = myFilter.bode(np.linspace(w1, w2,200))
+
+        
 
   #  plt.figure()
     plt.figure("Magnitude response")
