@@ -1,4 +1,4 @@
-Folder/.ipynb_checkpoints/*.ipynb
+Folder*/.ipynb_checkpoints/*.ipynb
 .swp
 __pycache__
 
