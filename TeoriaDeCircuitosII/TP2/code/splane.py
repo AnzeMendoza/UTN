@@ -206,19 +206,19 @@ def convert2SOS(myFilter):
         
     return SOSoutput
 ####################################################################################
-def pretty(trans_fuction, tFilter = 's', dec = 3):
+def pretty(trans_fuction, tFilter = 's'):
     
-    num = np.around(trans_fuction.num,dec)
-    den = np.around(trans_fuction.den,dec)
+    num = trans_fuction.num
+    den = trans_fuction.den
     
-    num = ['{0} {1}^{2}'.format(num[i], tFilter, len(num)-i-1) if num[i] else '' for i in range(len(num))]
+    num = ['{:.3E} {}^{}'.format(num[i], tFilter, len(num)-i-1) if num[i] else '' for i in range(len(num))]
     num = ' + '.join(num)
-    den = ['{0} {1}^{2}'.format(den[i], tFilter, len(den)-i-1) if num[i] else '' for i in range(len(den))]
+    den = ['{:.3E} {}^{}'.format(den[i], tFilter, len(den)-i-1) if num[i] else '' for i in range(len(den))]
     den = ' + '.join(den)
     max_len = max(len(num), len(den))
     bar = '-' * max_len
     print('       {}{}'.format(' ' * int(max_len/2-len(num)/2), num))
-    print('T({}) = {}'.format(tFilter,bar))
+    print('H({})= {}'.format(tFilter,bar))
     print('       {}{}'.format(' ' * int(max_len/2-len(den)/2), den))
 ####################################################################################
 def epsilonButter(alpha_max):
