@@ -10,6 +10,7 @@ Código de Dominio Público */
 
 void LCD (void);
 void CAP(void);
+void SerialPrint(void);
 
 /*Definiciones y variables capacimetro */
 #define analogPin      0          
@@ -26,16 +27,16 @@ int f_nano = 0;
 LiquidCrystal lcd(1, 2, 4, 5, 6, 7); // Crea un Objeto LC. Parametros: (rs, enable, d4, d5, d6, d7)
 /*----------------------------------------------------------------------------------------------*/
 void setup() {   
-    lcd.begin(16,2); // Inicializa la interface para el LCD screen, and determina sus dimensiones (ancho y alto) del display
-
+    //lcd.begin(16,2); // Inicializa la interface para el LCD screen, and determina sus dimensiones (ancho y alto) del display
     /*Inicializacion capacimetro*/
+    Serial.begin(9600);
     pinMode(chargePin, OUTPUT);
     digitalWrite(chargePin, LOW);
-    
 }
 /*----------------------------------------------------------------------------------------------*/
 void loop() { 
-    LCD();
+    //LCD();
+    SerialPrint();
     CAP();
  }
 /*----------------------------------------------------------------------------------------------*/
@@ -70,20 +71,13 @@ void CAP()
 /*----------------------------------------------------------------------------------------------*/
 void SerialPrint(){
     if(!f_nano){
-        lcd.setCursor(1,0); // Seteamos la ubicacion texto 0 linea 1 que sera escrita sobre el LCD
-        lcd.print(microFarads);
-         //delay(1000);
-        lcd.setCursor(1,7);
-        lcd.print("uF");
-        //delay(1000);
+        Serial.print(microFarads);
+        Serial.println("  uF");
     } else {
-        lcd.setCursor(1,0); // Seteamos la ubicacion texto 0 linea 1 que sera escrita sobre el LCD
-        lcd.print(nanoFarads);
-        //delay(1000); 
-        lcd.setCursor(1,7);
-        lcd.print("nF");
-        //delay(1000);
+        Serial.print(nanoFarads);
+        Serial.println("  nF");
     }
+        
 }
 /*----------------------------------------------------------------------------------------------*/
  void LCD (){
